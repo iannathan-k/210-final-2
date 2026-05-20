@@ -111,7 +111,6 @@ int main() {
 
         int prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
         if (prob <= 50) {
-            // Code comes from above
             CustomerNode* temp = new CustomerNode;
             temp->name = NAMES[rand() % NAMES_LEN];
             temp->order = DRINKS[rand() % DRINKS_LEN];
