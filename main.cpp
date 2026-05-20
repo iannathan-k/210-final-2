@@ -38,6 +38,7 @@ int main() {
         CustomerNode* temp = new CustomerNode;
         temp->name = NAMES[rand() % NAMES_LEN];
         temp->order = DRINKS[rand() % DRINKS_LEN];
+        temp->next = nullptr;
 
         if (head == nullptr) {
             head = temp;
@@ -49,9 +50,12 @@ int main() {
     }
 
     for (int i = 0; i < ROUNDS; i++) {
+        cout << "Time Step " << i + 1 << endl;
+
         if (head != nullptr) {
             CustomerNode* served = head;
             head = head->next;
+            cout << served->name << " was served a " << served->order << endl;
             delete served;
         }
 
@@ -61,6 +65,7 @@ int main() {
             CustomerNode* temp = new CustomerNode;
             temp->name = NAMES[rand() % NAMES_LEN];
             temp->order = DRINKS[rand() % DRINKS_LEN];
+            temp->next = nullptr;
 
             if (head == nullptr) {
                 head = temp;
@@ -69,18 +74,22 @@ int main() {
                 tail->next = temp;
                 tail = temp;
             }
+
+            cout << temp->name << " joined wanting " << temp->order << endl;
         }
 
         CustomerNode* curr = head;
-        cout << "Time Step " << i + 1 << endl;
+        
         if (head == nullptr) {
             cout << "Queue is empty!" << endl;
+        } else {
+            cout << "Queue: ";
         }
         while (curr != nullptr) {
-            cout << curr->name << " wants a " << curr->order << endl;
+            cout << "[" << curr->name << ", " << curr->order << "] ";
             curr = curr->next;
         }
-        cout << endl;
+        cout << endl << endl;
     }
 
     return 0;
