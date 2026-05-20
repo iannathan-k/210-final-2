@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <deque>
 using namespace std;
 
 const int NAMES_LEN = 15;
@@ -49,8 +50,14 @@ int main() {
         }
     }
 
+    deque<string> muffin_booth;
+    for (int i = 0; i < INITIAL_QUEUE; i++) {
+        string temp = NAMES[rand() % NAMES_LEN];
+        muffin_booth.push_back(temp);
+    }
+
     for (int i = 0; i < ROUNDS; i++) {
-        cout << "Time Step " << i + 1 << endl;
+        cout << "===== Time Step " << i + 1 << "=====" << endl;
 
         if (head != nullptr) {
             CustomerNode* served = head;
@@ -81,13 +88,39 @@ int main() {
         CustomerNode* curr = head;
         
         if (head == nullptr) {
-            cout << "Queue is empty!" << endl;
+            cout << "Queue is empty!";
         } else {
             cout << "Queue: ";
         }
         while (curr != nullptr) {
             cout << "[" << curr->name << ", " << curr->order << "] ";
             curr = curr->next;
+        }
+        cout << endl << endl;
+
+        // Milestone 3
+        if (muffin_booth.size() > 0) {
+            string served = muffin_booth.front();
+            muffin_booth.pop_front();
+
+            cout << served << " was served" << endl;
+        }
+
+        prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
+        if (prob <= 50) {
+            string temp = NAMES[rand() % NAMES_LEN];
+            muffin_booth.push_back(temp);
+
+            cout << temp << " joined the deque" << endl;
+        }
+
+        if (muffin_booth.size() == 0) {
+            cout << "Deque is empty!";
+        } else {
+            cout << "Deque: ";
+        }
+        for (string name : muffin_booth) {
+            cout << name << " ";
         }
         cout << endl << endl;
     }
