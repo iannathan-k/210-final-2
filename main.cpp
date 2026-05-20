@@ -11,6 +11,9 @@ const int INITIAL_QUEUE = 3;
 const int ROUNDS = 10;
 const int MIN_PROB = 1;
 const int MAX_PROB = 100;
+const int MUFFINS_LEN = 10;
+const int BRACELETS_LEN = 10;
+const int CARS_LEN = 10;
 
 const string NAMES[NAMES_LEN] = {
     "Alice", "Bob", "Charlie", "Diana", "Ethan", 
@@ -23,10 +26,30 @@ const string DRINKS[DRINKS_LEN] = {
     "Macchiato", "Flat White", "Iced Coffee", "Cold Brew", "Matcha Latte"
 };
 
+const string MUFFINS[MUFFINS_LEN] = {
+    "Blueberry", "Chocolate Chip", "Banana Nut", "Lemon Poppy Seed", "Bran",
+    "Double Chocolate", "Apple Cinnamon", "Pumpkin Spice", "Cranberry Orange", "Oatmeal Raisin"
+};
+
+const string BRACELETS[BRACELETS_LEN] = {
+    "Beaded", "Woven", "Silver Chain", "Gold Bangle", "Leather Wrap",
+    "Charm", "Macrame", "Gemstone", "Paracord", "Tennis"
+};
+
+const string CARS[CARS_LEN] = {
+    "Toyota Camry", "Ford F-150", "Honda Civic", "Tesla Model 3", "Chevrolet Silverado",
+    "Subaru Outback", "Jeep Wrangler", "Porsche 911", "BMW 3 Series", "Audi A4"
+};
+
 struct CustomerNode {
     string name;
     string order;
     CustomerNode* next;
+};
+
+struct Customer {
+    string name;
+    string order;
 };
 
 int main() {
