@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <deque>
+#include <vector>
 using namespace std;
 
 const int NAMES_LEN = 15;
@@ -54,6 +55,12 @@ int main() {
     for (int i = 0; i < INITIAL_QUEUE; i++) {
         string temp = NAMES[rand() % NAMES_LEN];
         muffin_booth.push_back(temp);
+    }
+
+    vector<string> bracelet_booth;
+    for (int i = 0; i < INITIAL_QUEUE; i++) {
+        string temp = NAMES[rand() % NAMES_LEN];
+        bracelet_booth.push_back(temp);
     }
 
     for (int i = 0; i < ROUNDS; i++) {
@@ -120,6 +127,31 @@ int main() {
             cout << "Deque: ";
         }
         for (string name : muffin_booth) {
+            cout << name << " ";
+        }
+        cout << endl << endl;
+
+        // Milestone 4
+        if (bracelet_booth.size() > 0) {
+            string served = bracelet_booth.at(0);
+            bracelet_booth.erase(bracelet_booth.begin());
+            cout << served << " was served" << endl;
+        }
+
+        prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
+        if (prob <= 50) {
+            string temp = NAMES[rand() % NAMES_LEN];
+            bracelet_booth.push_back(temp);
+
+            cout << temp << " joined the vector" << endl;
+        }
+
+        if (bracelet_booth.size() == 0) {
+            cout << "Vector is empty!";
+        } else {
+            cout << "Vector: ";
+        }
+        for (string name : bracelet_booth) {
             cout << name << " ";
         }
         cout << endl << endl;
