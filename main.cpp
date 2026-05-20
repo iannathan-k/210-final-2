@@ -2,6 +2,7 @@
 #include <random>
 #include <deque>
 #include <vector>
+#include <list>
 using namespace std;
 
 const int NAMES_LEN = 15;
@@ -61,6 +62,12 @@ int main() {
     for (int i = 0; i < INITIAL_QUEUE; i++) {
         string temp = NAMES[rand() % NAMES_LEN];
         bracelet_booth.push_back(temp);
+    }
+
+    list<string> car_booth;
+    for (int i = 0; i < INITIAL_QUEUE; i++) {
+        string temp = NAMES[rand() % NAMES_LEN];
+        car_booth.push_back(temp);
     }
 
     for (int i = 0; i < ROUNDS; i++) {
@@ -152,6 +159,31 @@ int main() {
             cout << "Vector: ";
         }
         for (string name : bracelet_booth) {
+            cout << name << " ";
+        }
+        cout << endl << endl;
+
+        // Milestone 5
+        if (car_booth.size() > 0) {
+            string served = car_booth.front();
+            car_booth.erase(car_booth.begin());
+            cout << served << " was served" << endl;
+        }
+
+        prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
+        if (prob <= 50) {
+            string temp = NAMES[rand() % NAMES_LEN];
+            car_booth.push_back(temp);
+
+            cout << temp << " joined the list" << endl;
+        }
+
+        if (car_booth.size() == 0) {
+            cout << "List is empty!";
+        } else {
+            cout << "List: ";
+        }
+        for (string name : car_booth) {
             cout << name << " ";
         }
         cout << endl << endl;
