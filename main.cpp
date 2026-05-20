@@ -75,21 +75,27 @@ int main() {
         }
     }
 
-    deque<string> muffin_booth;
+    deque<Customer> muffin_booth;
     for (int i = 0; i < INITIAL_QUEUE; i++) {
-        string temp = NAMES[rand() % NAMES_LEN];
+        Customer temp;
+        temp.name = NAMES[rand() % NAMES_LEN];
+        temp.order = MUFFINS[rand() % MUFFINS_LEN];
         muffin_booth.push_back(temp);
     }
 
-    vector<string> bracelet_booth;
+    vector<Customer> bracelet_booth;
     for (int i = 0; i < INITIAL_QUEUE; i++) {
-        string temp = NAMES[rand() % NAMES_LEN];
+        Customer temp;
+        temp.name = NAMES[rand() % NAMES_LEN];
+        temp.order = BRACELETS[rand() % BRACELETS_LEN];
         bracelet_booth.push_back(temp);
     }
 
-    list<string> car_booth;
+    list<Customer> car_booth;
     for (int i = 0; i < INITIAL_QUEUE; i++) {
-        string temp = NAMES[rand() % NAMES_LEN];
+        Customer temp;
+        temp.name = NAMES[rand() % NAMES_LEN];
+        temp.order = CARS[rand() % CARS_LEN];
         car_booth.push_back(temp);
     }
 
@@ -137,18 +143,20 @@ int main() {
 
         // Milestone 3
         if (muffin_booth.size() > 0) {
-            string served = muffin_booth.front();
+            Customer served = muffin_booth.front();
             muffin_booth.pop_front();
 
-            cout << served << " was served" << endl;
+            cout << served.name << " was served a " << served.order << endl;
         }
 
         prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
         if (prob <= 50) {
-            string temp = NAMES[rand() % NAMES_LEN];
+            Customer temp;
+            temp.name = NAMES[rand() % NAMES_LEN];
+            temp.order = MUFFINS[rand() % MUFFINS_LEN];
             muffin_booth.push_back(temp);
 
-            cout << temp << " joined the deque" << endl;
+            cout << temp.name << " joined the deque wanting a " << temp.order << endl;
         }
 
         if (muffin_booth.size() == 0) {
@@ -156,24 +164,26 @@ int main() {
         } else {
             cout << "Deque: ";
         }
-        for (string name : muffin_booth) {
-            cout << name << " ";
+        for (Customer c : muffin_booth) {
+            cout << "[" << c.name << ", " << c.order << "] ";
         }
         cout << endl << endl;
 
         // Milestone 4
         if (bracelet_booth.size() > 0) {
-            string served = bracelet_booth.at(0);
+            Customer served = bracelet_booth.at(0);
             bracelet_booth.erase(bracelet_booth.begin());
-            cout << served << " was served" << endl;
+            cout << served.name << " was served a " << served.order << endl;
         }
 
         prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
         if (prob <= 50) {
-            string temp = NAMES[rand() % NAMES_LEN];
+            Customer temp;
+            temp.name = NAMES[rand() % NAMES_LEN];
+            temp.order = BRACELETS[rand() % BRACELETS_LEN];
             bracelet_booth.push_back(temp);
 
-            cout << temp << " joined the vector" << endl;
+            cout << temp.name << " joined the vector wanting a " << temp.order << endl;
         }
 
         if (bracelet_booth.size() == 0) {
@@ -181,24 +191,26 @@ int main() {
         } else {
             cout << "Vector: ";
         }
-        for (string name : bracelet_booth) {
-            cout << name << " ";
+        for (Customer c : bracelet_booth) {
+            cout << "[" << c.name << ", " << c.order << "] ";
         }
         cout << endl << endl;
 
         // Milestone 5
         if (car_booth.size() > 0) {
-            string served = car_booth.front();
+            Customer served = car_booth.front();
             car_booth.erase(car_booth.begin());
-            cout << served << " was served" << endl;
+            cout << served.name << " was served a " << served.order << endl;
         }
 
         prob = rand() % (MAX_PROB - MIN_PROB + 1) + MIN_PROB;
         if (prob <= 50) {
-            string temp = NAMES[rand() % NAMES_LEN];
+            Customer temp;
+            temp.name = NAMES[rand() % NAMES_LEN];
+            temp.order = CARS[rand() % CARS_LEN];
             car_booth.push_back(temp);
 
-            cout << temp << " joined the list" << endl;
+            cout << temp.name << " joined the list wating a " << temp.order << endl;
         }
 
         if (car_booth.size() == 0) {
@@ -206,11 +218,12 @@ int main() {
         } else {
             cout << "List: ";
         }
-        for (string name : car_booth) {
-            cout << name << " ";
+        for (Customer c : car_booth) {
+            cout << "[" << c.name << ", " << c.order << "] ";
         }
         cout << endl << endl;
     }
 
+    // Milestone 6
     return 0;
 }
